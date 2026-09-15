@@ -17,15 +17,16 @@ npm run dev
 4. Ardından `supabase/migrations/202609160003_fix_posts_id_default.sql` dosyasını çalıştır.
 5. Son olarak `supabase/migrations/202609160004_social_layer.sql` dosyasını çalıştır. Bu migration akış, profil, takip, yorum, dürüstlük/güvenilirlik puanı, şikâyet ve alıntı tablolarını ve RLS kurallarını ekler.
 6. `supabase/migrations/202609160005_storage_uploads.sql` dosyasını çalıştır. Bu migration profil fotoğrafları ve yazı kapakları için Supabase Storage bucket'ları ve kullanıcı sahiplik politikalarını oluşturur.
-7. `.env.example` dosyasını `.env` olarak kopyala.
-8. Supabase Dashboard > Settings > API alanından değerleri doldur:
+7. Eğer profil kaydında `new row violates row-level security policy for table "profiles"` görürsen `supabase/migrations/202609160006_fix_profile_rls_and_storage.sql` dosyasını çalıştır. Bu dosya profil `upsert` iznini ve Storage politikalarını düzeltir.
+8. `.env.example` dosyasını `.env` olarak kopyala.
+9. Supabase Dashboard > Settings > API alanından değerleri doldur:
 
 ```env
 VITE_SUPABASE_URL=https://your-project.supabase.co
 VITE_SUPABASE_ANON_KEY=your-anon-key
 ```
 
-9. `npm run dev` ile uygulamayı aç.
+10. `npm run dev` ile uygulamayı aç.
 
 Supabase değişkenleri yoksa uygulama demo modunda çalışır ve yazıları tarayıcının localStorage alanında tutar. Gerçek kayıt, giriş ve yazı kaydetme için `.env` değerleri gereklidir.
 
